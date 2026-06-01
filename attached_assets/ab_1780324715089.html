@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vexon Studios | World Class Digital Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Syncopate:wght@400;700&display=swap');
+
+        /* --- THEME VARIABLES --- */
+        :root {
+            /* DARK MODE (DEFAULT) */
+            --bg-color: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af; 
+            --text-accent: #6b7280; 
+            
+            --glass-bg: rgba(20, 20, 20, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.05); /* Subtle Border */
+            --glass-shine-color: rgba(255, 255, 255, 0.05); /* Liquid Shine Color */
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            
+            --blob-1: #1a1a1a;
+            --blob-2: #151515;
+            --blob-3: #222222;
+            
+            --nav-bg: rgba(5, 5, 5, 0.85);
+            --grid-line: rgba(255, 255, 255, 0.03);
+            
+            --btn-bg: rgba(255, 255, 255, 0.1);
+            --btn-border: rgba(255, 255, 255, 0.2);
+            --btn-hover-text: #000000;
+            --btn-hover-bg: #ffffff;
+        }
+
+        [data-theme="light"] {
+            /* LIGHT MODE (PREMIUM) */
+            --bg-color: #f0f2f5; 
+            --text-primary: #111111;
+            --text-secondary: #4b5563;
+            --text-accent: #9ca3af;
+            
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --glass-shine-color: rgba(255, 255, 255, 0.9);
+            --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
+            
+            --blob-1: #e5e7eb;
+            --blob-2: #d1d5db;
+            --blob-3: #ffffff;
+            
+            --nav-bg: rgba(240, 242, 245, 0.9);
+            --grid-line: rgba(0, 0, 0, 0.03);
+            
+            --btn-bg: rgba(0, 0, 0, 0.05);
+            --btn-border: rgba(0, 0, 0, 0.1);
+            --btn-hover-text: #ffffff;
+            --btn-hover-bg: #111111;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        /* --- BACKGROUND --- */
+        .material-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            background: var(--bg-color);
+            overflow: hidden;
+            transition: background 0.5s ease;
+        }
+
+        .dark-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            transition: background 0.5s ease;
+            animation: float-dark 15s infinite alternate ease-in-out;
+        }
+
+        .blob-1 { top: -20%; left: -10%; width: 60vw; height: 60vw; background: var(--blob-1); animation-delay: 0s; }
+        .blob-2 { bottom: -20%; right: -10%; width: 70vw; height: 70vw; background: var(--blob-2); animation-delay: -5s; }
+        .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: var(--blob-3); animation-delay: -8s; }
+
+        @keyframes float-dark {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(20px, -20px) scale(1.05); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        /* --- LIQUID GLASS CARD (The Animation You Wanted) --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* This creates the "Liquid Shine" effect */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                var(--glass-shine-color),
+                transparent
+            );
+            transform: skewX(-25deg);
+            transition: 0.6s;
+            pointer-events: none;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Navigation */
+        .nav-glass {
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: background 0.5s ease;
+        }
+
+        /* Buttons */
+        .btn-pro {
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .btn-pro:hover {
+            background: var(--btn-hover-bg);
+            color: var(--btn-hover-text);
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.2);
+            border-color: var(--btn-hover-bg);
+        }
+
+        .btn-primary-pro {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border: 1px solid var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .btn-primary-pro:hover {
+            background: transparent;
+            color: var(--text-primary);
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.2);
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--text-accent), transparent);
+            opacity: 0.3;
+        }
+
+        /* Icon Colors */
+        .icon-box {
+            background: var(--btn-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+        }
+        .group:hover .icon-box {
+            background: var(--text-primary);
+            color: var(--bg-color);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .theme-toggle:hover {
+            background: var(--glass-border);
+        }
+
+        /* Reveal Image */
+        .reveal-img {
+            filter: grayscale(100%) brightness(0.9);
+            transition: filter 0.8s ease, transform 0.7s ease;
+        }
+        .reveal-img.in-view {
+            filter: grayscale(0%) brightness(1);
+        }
+        .group:hover .reveal-img {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Process Line */
+        .process-line {
+            position: absolute;
+            top: 50%; left: 0; width: 100%; height: 1px;
+            background: var(--glass-border);
+            z-index: -1;
+        }
+
+        /* --- INFINITE SLIDESHOW ANIMATION --- */
+        .scroller {
+            max-width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .scroller-inner {
+            display: flex;
+            gap: 2rem;
+            padding-block: 1rem;
+            width: max-content;
+            animation: scroll 60s linear infinite; /* Slow smooth loop */
+        }
+
+        @keyframes scroll {
+            to { transform: translate(calc(-50% - 1rem)); }
+        }
+
+        /* Loader */
+        .loader-wrapper {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="loader-wrapper" id="loader">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold brand-font tracking-[8px]">VEXON</h1>
+            <div class="mt-4 h-[1px] w-24 bg-gray-500 mx-auto animate-pulse"></div>
+        </div>
+    </div>
+
+    <div class="material-bg">
+        <div class="grid-overlay"></div>
+        <div class="dark-blob blob-1"></div>
+        <div class="dark-blob blob-2"></div>
+        <div class="dark-blob blob-3"></div>
+    </div>
+
+    <nav class="fixed w-full z-50 nav-glass">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold brand-font flex items-center gap-2">
+                VEXON <span class="text-[10px] px-1 rounded font-sans font-bold tracking-tight" style="background: var(--text-primary); color: var(--bg-color);">STUDIO</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8 items-center text-xs font-bold tracking-[2px] uppercase" style="color: var(--text-secondary);">
+                <a href="#home" class="hover:text-dynamic-primary transition-colors" style="color: inherit;">Home</a>
+                <a href="#about" class="hover:text-dynamic-primary transition-colors" style="color: inherit;">About</a>
+                <a href="#services" class="hover:text-dynamic-primary transition-colors" style="color: inherit;">Services</a>
+                <a href="#portfolio" class="hover:text-dynamic-primary transition-colors" style="color: inherit;">Work</a>
+                
+                <button id="theme-switch" class="theme-toggle text-lg" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon" id="theme-icon" style="color: var(--text-primary);"></i>
+                </button>
+
+                <a href="#contact" class="px-6 py-3 btn-pro rounded-full">
+                    Contact
+                </a>
+            </div>
+
+            <div class="md:hidden flex items-center gap-4">
+                <button id="theme-switch-mobile" class="theme-toggle text-lg">
+                    <i class="fas fa-moon" id="theme-icon-mobile" style="color: var(--text-primary);"></i>
+                </button>
+                <button id="menu-btn" class="text-2xl" style="color: var(--text-primary);"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col justify-center items-center gap-10 transform translate-x-full transition-transform duration-300" style="background: var(--bg-color);">
+        <a href="#home" class="text-2xl brand-font mobile-link">Home</a>
+        <a href="#services" class="text-2xl brand-font mobile-link">Services</a>
+        <a href="#portfolio" class="text-2xl brand-font mobile-link">Work</a>
+        <a href="#contact" class="text-2xl brand-font mobile-link">Contact</a>
+        <button id="close-menu" class="absolute top-8 right-8 text-3xl" style="color: var(--text-secondary);"><i class="fas fa-times"></i></button>
+    </div>
+
+    <section id="home" class="min-h-screen flex items-center justify-center relative px-6 pt-20">
+        <div class="text-center max-w-5xl relative z-10">
+            <div class="inline-block mb-8" data-aos="fade-down">
+                <span class="text-[10px] font-bold tracking-[4px] uppercase border-b pb-2" style="border-color: var(--glass-border); color: var(--text-accent);">Est. 2025 • Colombo</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-8xl font-bold mb-8 leading-tight" data-aos="zoom-in" data-aos-delay="100">
+                DIGITAL <br> <span style="color: var(--text-accent);">MASTERY.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl mb-12 max-w-xl mx-auto font-light tracking-wide leading-relaxed" style="color: var(--text-secondary);">
+                A premium creative studio crafting high-end photography, cinematic video, and immersive web experiences.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center" data-aos="fade-up" data-aos-delay="300">
+                <a href="#portfolio" class="btn-primary-pro px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+                    View Work
+                </a>
+                <a href="#contact" class="btn-pro px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs">
+                    Start Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 border-y" style="border-color: var(--glass-border); background: var(--glass-bg);">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-around items-center gap-8 text-center">
+                <div data-aos="fade-up">
+                    <h3 class="text-2xl font-bold mb-1">Premium</h3>
+                    <p class="text-[10px] uppercase tracking-[2px]" style="color: var(--text-accent);">Quality Standards</p>
+                </div>
+                <div class="hidden md:block stat-divider"></div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold mb-1">Creative</h3>
+                    <p class="text-[10px] uppercase tracking-[2px]" style="color: var(--text-accent);">Direction</p>
+                </div>
+                <div class="hidden md:block stat-divider"></div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold mb-1">Modern</h3>
+                    <p class="text-[10px] uppercase tracking-[2px]" style="color: var(--text-accent);">Technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20" data-aos="fade-right">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2 brand-font">Expertise</h2>
+                    <p class="tracking-widest text-xs uppercase" style="color: var(--text-accent);">Our Core Capabilities</p>
+                </div>
+                <a href="#contact" class="hidden md:inline-block text-xs font-bold uppercase tracking-widest pb-1 transition border-b" style="color: var(--text-primary); border-color: var(--glass-border);">Get a Quote</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex flex-col h-full">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6 text-xl icon-box transition-colors duration-500">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-4 tracking-wider">PHOTOGRAPHY</h3>
+                        <p class="text-sm leading-relaxed mb-8 flex-grow font-light" style="color: var(--text-secondary);">
+                            Editorial style portraits, event coverage, and commercial product shoots.
+                        </p>
+                        <div class="mt-auto flex justify-between items-center pt-4 border-t" style="border-color: var(--glass-border);">
+                            <span class="text-[10px] uppercase tracking-widest" style="color: var(--text-accent);">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col h-full">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6 text-xl icon-box transition-colors duration-500">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-4 tracking-wider">VIDEOGRAPHY</h3>
+                        <p class="text-sm leading-relaxed mb-8 flex-grow font-light" style="color: var(--text-secondary);">
+                            High-definition video production. Music videos, commercials, and reels.
+                        </p>
+                        <div class="mt-auto flex justify-between items-center pt-4 border-t" style="border-color: var(--glass-border);">
+                            <span class="text-[10px] uppercase tracking-widest" style="color: var(--text-accent);">Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-col h-full">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6 text-xl icon-box transition-colors duration-500">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-4 tracking-wider">WEB DESIGN</h3>
+                        <p class="text-sm leading-relaxed mb-8 flex-grow font-light" style="color: var(--text-secondary);">
+                            Immersive, responsive websites built with modern frameworks and clean code.
+                        </p>
+                        <div class="mt-auto flex justify-between items-center pt-4 border-t" style="border-color: var(--glass-border);">
+                            <span class="text-[10px] uppercase tracking-widest" style="color: var(--text-accent);">Planned</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex flex-col h-full">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center mb-6 text-xl icon-box transition-colors duration-500">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-4 tracking-wider">PRINTING</h3>
+                        <p class="text-sm leading-relaxed mb-8 flex-grow font-light" style="color: var(--text-secondary);">
+                            Premium quality printing services for branding and marketing materials.
+                        </p>
+                        <div class="mt-auto flex justify-between items-center pt-4 border-t" style="border-color: var(--glass-border);">
+                            <span class="text-[10px] uppercase tracking-widest" style="color: var(--text-accent);">Planned</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold mb-2 brand-font">The Process</h2>
+                <p class="text-xs uppercase tracking-widest" style="color: var(--text-accent);">How We Deliver Perfection</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div class="hidden md:block process-line"></div>
+                
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="glass-card w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 text-2xl relative z-10" style="background: var(--bg-color);">
+                        <span class="font-bold">1</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">DISCOVERY</h3>
+                    <p class="text-xs leading-relaxed max-w-xs mx-auto" style="color: var(--text-secondary);">We listen to your vision and understand your core needs.</p>
+                </div>
+
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 text-2xl relative z-10" style="background: var(--bg-color);">
+                        <span class="font-bold">2</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">CREATION</h3>
+                    <p class="text-xs leading-relaxed max-w-xs mx-auto" style="color: var(--text-secondary);">We build, shoot, and design using industry-standard tools.</p>
+                </div>
+
+                <div class="text-center group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 text-2xl relative z-10" style="background: var(--bg-color);">
+                        <span class="font-bold">3</span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">DELIVERY</h3>
+                    <p class="text-xs leading-relaxed max-w-xs mx-auto" style="color: var(--text-secondary);">Final quality checks and seamless delivery of your assets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto glass-card overflow-hidden">
+                <div class="flex flex-col md:flex-row h-full">
+                    
+                    <div class="w-full md:w-5/12 relative h-64 md:h-auto">
+                        <img src="my.jpg" 
+                             alt="Founder" 
+                             class="w-full h-full object-cover reveal-img absolute inset-0">
+                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                             <div>
+                                 <h4 class="brand-font text-lg text-white">Vexon</h4>
+                                 <p class="text-[10px] tracking-widest uppercase text-gray-300">Est. 2025</p>
+                             </div>
+                         </div>
+                    </div>
+                    
+                    <div class="w-full md:w-7/12 p-8 md:p-10 flex flex-col justify-center">
+                        <h2 class="text-2xl font-bold mb-4 brand-font">Our <span style="color: var(--text-accent);">Philosophy</span></h2>
+                        <p class="text-sm leading-relaxed mb-6 font-light" style="color: var(--text-secondary);">
+                            "Vexon Studios isn't just about services; it's about perspective. At 19, we are digital natives. We don't adapt to the future; we build it. Clean, impactful, and professional."
+                        </p>
+                        
+                        <div class="flex gap-8 border-t pt-6" style="border-color: var(--glass-border);">
+                             <div>
+                                 <div class="text-xl font-bold mb-1">100%</div>
+                                 <div class="text-[10px] uppercase tracking-widest" style="color: var(--text-accent);">Focus</div>
+                             </div>
+                             <div>
+                                 <div class="text-xl font-bold mb-1">24/7</div>
+                                 <div class="text-[10px] uppercase tracking-widest" style="color: var(--text-accent);">Support</div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 overflow-hidden">
+        <div class="container mx-auto px-6 mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold brand-font">Selected Work</h2>
+            <p class="text-xs uppercase tracking-widest mt-2" style="color: var(--text-accent);">Scrolls Automatically</p>
+        </div>
+
+        <div class="scroller" data-aos="fade-up">
+            <div class="scroller-inner">
+                <div class="glass-card w-[300px] md:w-[400px] p-4 flex-shrink-0 cursor-pointer group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="w-full h-full object-cover reveal-img">
+                    </div>
+                    <h3 class="font-bold text-lg tracking-wide">Neon Nights</h3>
+                    <p class="text-xs uppercase tracking-widest" style="color: var(--text-accent);">Photography</p>
+                </div>
+                
+                <div class="glass-card w-[300px] md:w-[400px] p-4 flex-shrink-0 cursor-pointer group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="w-full h-full object-cover reveal-img">
+                    </div>
+                    <h3 class="font-bold text-lg tracking-wide">Urban Soul</h3>
+                    <p class="text-xs uppercase tracking-widest" style="color: var(--text-accent);">Portrait</p>
+                </div>
+
+                <div class="glass-card w-[300px] md:w-[400px] p-4 flex-shrink-0 cursor-pointer group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="w-full h-full object-cover reveal-img">
+                    </div>
+                    <h3 class="font-bold text-lg tracking-wide">Studio Vibes</h3>
+                    <p class="text-xs uppercase tracking-widest" style="color: var(--text-accent);">Creative</p>
+                </div>
+
+                <div class="glass-card w-[300px] md:w-[400px] p-4 flex-shrink-0 cursor-pointer group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&w=800&q=80" class="w-full h-full object-cover reveal-img">
+                    </div>
+                    <h3 class="font-bold text-lg tracking-wide">Future Tech</h3>
+                    <p class="text-xs uppercase tracking-widest" style="color: var(--text-accent);">Web Design</p>
+                </div>
+
+                <div class="glass-card w-[300px] md:w-[400px] p-4 flex-shrink-0 cursor-pointer group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="w-full h-full object-cover reveal-img">
+                    </div>
+                    <h3 class="font-bold text-lg tracking-wide">Neon Nights</h3>
+                    <p class="text-xs uppercase tracking-widest" style="color: var(--text-accent);">Photography</p>
+                </div>
+                <div class="glass-card w-[300px] md:w-[400px] p-4 flex-shrink-0 cursor-pointer group">
+                    <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="w-full h-full object-cover reveal-img">
+                    </div>
+                    <h3 class="font-bold text-lg tracking-wide">Urban Soul</h3>
+                    <p class="text-xs uppercase tracking-widest" style="color: var(--text-accent);">Portrait</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-opacity-50" style="background: rgba(0,0,0,0.02);">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <i class="fas fa-quote-left text-4xl mb-4 opacity-20"></i>
+                <h2 class="text-2xl font-bold brand-font">Client Voices</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card p-6" data-aos="fade-up">
+                    <p class="text-sm italic mb-4" style="color: var(--text-secondary);">"The photography for our wedding was cinematic and timeless. Vexon captured moments we didn't even know happened."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest">- Sarah J.</p>
+                </div>
+                <div class="glass-card p-6" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-sm italic mb-4" style="color: var(--text-secondary);">"Professional, young, and incredibly talented. The web design concepts were exactly what our brand needed."</p>
+                    <p class="text-xs font-bold uppercase tracking-widest">- TechFlow Inc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="glass-card p-16 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 brand-font">Ready to Begin?</h2>
+                <p class="mb-10 max-w-xl mx-auto text-sm font-light leading-loose" style="color: var(--text-secondary);">
+                    Let's transform your vision into a tangible reality. Reach out to us for a consultation.
+                </p>
+                
+                <a href="mailto:contact@vexon.com" class="btn-primary-pro px-12 py-5 rounded-full font-bold uppercase tracking-widest text-xs inline-block">
+                    Start Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t pt-20 pb-10" style="background: var(--bg-color); border-color: var(--glass-border);">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <h2 class="text-2xl font-bold brand-font tracking-widest">VEXON</h2>
+                    <p class="mt-2 text-[10px] uppercase tracking-[2px]" style="color: var(--text-accent);">Colombo, Sri Lanka</p>
+                </div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors" style="color: var(--text-accent);"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors" style="color: var(--text-accent);"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors" style="color: var(--text-accent);"><i class="fab fa-whatsapp text-xl"></i></a>
+                </div>
+            </div>
+            <div class="border-t pt-8 text-center text-[10px] uppercase tracking-widest" style="border-color: var(--glass-border); color: var(--text-accent);">
+                <p>&copy; 2025 Vexon Studios. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-quart',
+            once: true,
+            offset: 50
+        });
+
+        // Theme Switcher Logic
+        const toggleBtn = document.getElementById('theme-switch');
+        const toggleBtnMobile = document.getElementById('theme-switch-mobile');
+        const icon = document.getElementById('theme-icon');
+        const iconMobile = document.getElementById('theme-icon-mobile');
+        const html = document.documentElement;
+
+        // Check Local Storage
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        function updateIcon(theme) {
+            if (theme === 'light') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                iconMobile.classList.remove('fa-moon');
+                iconMobile.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                iconMobile.classList.remove('fa-sun');
+                iconMobile.classList.add('fa-moon');
+            }
+        }
+
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        }
+
+        toggleBtn.addEventListener('click', toggleTheme);
+        toggleBtnMobile.addEventListener('click', toggleTheme);
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 600);
+            }, 1000);
+        });
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('translate-x-full')) {
+                mobileMenu.classList.remove('translate-x-full');
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Scroll Reveal Logic
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, {
+            threshold: 0.4,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        document.querySelectorAll('.reveal-img').forEach((el) => {
+            revealObserver.observe(el);
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+uploads = []
+
+[[generated]]
+id = "fR552tOsGQ1EQLTpzjkIr"
+uri = "file://artifacts/vexon-studios/src/assets/images/main-hero.png"
+type = "image"
+title = "Main hero background"
+
+[[generated]]
+id = "qo9MEdbJs30BShZHeuFSe"
+uri = "file://artifacts/vexon-studios/src/assets/images/photo-hero.png"
+type = "image"
+title = "Photography hero"
+
+[[generated]]
+id = "TLtZp8sBDgldqVaoo-X38"
+uri = "file://artifacts/vexon-studios/src/assets/images/gallery-1.png"
+type = "image"
+title = "Wedding couple"
+
+[[generated]]
+id = "3ZLveAFkFpnCWDcvXCUE6"
+uri = "file://artifacts/vexon-studios/src/assets/images/gallery-2.png"
+type = "image"
+title = "Fashion portrait"
+
+[[generated]]
+id = "_i3ljMaDHfY0ruU_cf8Nq"
+uri = "file://artifacts/vexon-studios/src/assets/images/gallery-3.png"
+type = "image"
+title = "Corporate event"
+
+[[generated]]
+id = "WdNCpAr8iv7NIS0sXDQYm"
+uri = "file://artifacts/vexon-studios/src/assets/images/gallery-4.png"
+type = "image"
+title = "Landscape drone"
+
+[[generated]]
+id = "saW3ALIY2u62MECVW1A4o"
+uri = "file://artifacts/vexon-studios/src/assets/images/team-1.png"
+type = "image"
+title = "Lead Photographer"
+
+[[generated]]
+id = "dI3amahtyow6Bkqpbj1-Z"
+uri = "file://artifacts/vexon-studios/src/assets/images/team-2.png"
+type = "image"
+title = "Creative Director"
+
+[[generated]]
+id = "pdS-gAa4vLf3HhSmeqj7A"
+uri = "file://artifacts/vexon-studios/src/assets/images/team-3.png"
+type = "image"
+title = "Videographer"
+
+[[generated]]
+id = "QoXfZndeTL7y0YU_sBxjI"
+uri = "file://artifacts/vexon-studios/src/assets/images/team-4.png"
+type = "image"
+title = "Second Shooter"
+
+[[outputs]]
+id = "XNT8zoBHl2eZz-XCWY_Hw"
+uri = "file://README.md"
+type = "text"
+title = "Vexon Studios — Full System Documentation"

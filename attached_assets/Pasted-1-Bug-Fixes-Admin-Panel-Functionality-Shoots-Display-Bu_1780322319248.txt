@@ -1,0 +1,59 @@
+1. Bug Fixes & Admin Panel Functionality
+Shoots Display Bug: Shoots added from the admin panel are currently not displaying on the site. Please fix this.
+
+Founders/Team Section:
+
+Do not hardcode the images in the founders tab (currently, whatever is in the link is hardcoded).
+
+Do not hardcode the founders themselves. Rename the tab from "Founders" to "Team".
+
+We need the ability to custom-add the founder, owner, employees, and team members entirely through the admin panel.
+
+Content Management: Contact details, social links, descriptions, privacy policies, and terms & conditions must all be editable from the admin panel.
+
+Branding & Logos: I need to be able to upload our own logo in place of the text for "Vexon Studio". Additionally, I must be able to change the favicon (the small icon at the top of the browser tab) via the admin panel.
+
+Contact & Messages: Reviews and "Contact Us" form submissions must be forwarded directly to my email. Furthermore, all incoming messages must be visible inside the admin panel.
+
+Dummy Content: Do not include any fake or fabricated text (e.g., fake years of experience, fake client numbers, or fake order counts).
+
+2. UI/UX Redesign: Vexon Studios (Main Site)
+Overall Aesthetic: This is the main website for our company, Vexon Studios, so the work must be executed flawlessly. The site needs an advanced, professional, and minimalist design.
+
+Animations: Incorporate 3D elements, parallax scrolling, and Apple iOS-style liquid glass animations (glassmorphism) while strictly maintaining the professional, minimalist vibe.
+
+Hero Section: The current homepage hero design is bad. Make it minimalist and professional. Add a looping background animation that fits this vibe. The video in this section should be dynamically fetched by pasting a link into the video section of the admin panel.
+
+Header & Menus: The top header and navigation menus must be redesigned to be professional and minimalist.
+
+Services: The current way services are displayed is terrible. Redesign them into a clean, minimalist layout.
+
+3. New "Our Products" Section
+Create a new page/section called "Our Products" with the same minimalist and professional design.
+
+This section will showcase the products we offer and the sites, apps, and systems we have built, displayed beautifully with animations.
+
+Admin Control: Everything here must be manageable via the admin panel. We need to be able to upload apps/sites and toggle whether to display a "View Demo" or "Download" button for each item.
+
+Downloads: If we provide a download option (for app files, images, or videos), we should be able to host the file on GitHub (or a similar platform), paste the link into the admin panel, and have the user download it directly when they click the button.
+
+4. UI/UX Redesign: Vexon Photography
+Overall Aesthetic: The photography page is completely ruined. Redesign it with a professional, minimalist studio/wedding vibe.
+
+Hero Section: The hero section is extremely bad and needs a complete redesign to match the minimalist wedding aesthetic.
+
+Packages & Pricing: The way packages are displayed needs a minimalist redesign. All photography packages, pricing, and categories must be addable/editable via the admin panel.
+
+Inspiration & Research: To achieve this high-end studio vibe, research thoroughly on the internet. Look at creative designer sites like Awwwards and other modern platforms to gather inspiration and execute the design without any flaws.
+
+5. Technical Optimization & Deployment
+Responsiveness: Fully optimize the site for mobile. Ensure it scales perfectly to any screen size. Since most users will view this on mobile devices, mobile optimization must be top-tier.
+
+Deployment: Check thoroughly for bugs while developing. Once built properly, deploy the site automatically to Firebase.
+
+6. Complete System Documentation
+Provide a comprehensive README.md (Markdown) file documenting everything done from the beginning of the project until now.
+
+Content: This document must contain full details about the site, the database, Firebase integration, hosting, how the APIs function, and the complete system architecture.
+
+Target Audience: It must be written so that a completely new software engineer with zero prior knowledge of the project can read it, fully understand how everything works under the hood, and seamlessly build upon it or make changes to the site. Document absolutely everything.
